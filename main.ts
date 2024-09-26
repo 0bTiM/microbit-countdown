@@ -1,19 +1,19 @@
 const timers = [
     {
         name: "A",
-        time: 5
+        time: 19
     },
     {
         name: "B",
-        time: 7 
+        time: 59
     },
     {
         name: "C",
-        time: 11
+        time: 31
     },
     {
         name: "D",
-        time: 13
+        time: 47
     }
 ]
 
