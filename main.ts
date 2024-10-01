@@ -83,7 +83,7 @@ input.onButtonPressed(Button.B, () => {
 input.onButtonPressed(Button.A, () => {
     if (!locked) {
         locked = true
-        let delay = timers[selectedTimer].time * 1000 / 5
+        let delay = (timers[selectedTimer].time -2.3) * 1000 / 5 //Compensating for 2.3s processing delay
         showCounterPhase[5]()
         for (let i = 4; i >= 0 ; i--) {
             basic.pause(delay)
