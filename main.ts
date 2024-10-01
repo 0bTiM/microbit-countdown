@@ -84,10 +84,13 @@ input.onButtonPressed(Button.A, () => {
     if (!locked) {
         locked = true
         let delay = timers[selectedTimer].time * 1000 / 5
-        for (let i = 5; i >=0 ; i--) {
-            showCounterPhase[i]()
+        showCounterPhase[5]()
+        for (let i = 4; i >= 0 ; i--) {
             basic.pause(delay)
+            showCounterPhase[i]()
         }
+        basic.pause(3000)
+        showTimerName()
         locked = false
     }
 })
