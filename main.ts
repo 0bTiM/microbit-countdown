@@ -1,4 +1,3 @@
-let selectedTimer = 0
 const timers = [
     {
         name: "A",
@@ -63,23 +62,33 @@ const showCounterPhase = [
     )
 ]
 
+let selectedTimer = 0
 const showTimerName = () => basic.showString(timers[selectedTimer].name)
+let locked = false
 
-// Cycle through the Timers
-// input.onButtonPressed(Button.AB, () => {
-//     selectedTimer = (selectedTimer + 1) % 4
-//     showTimerName()
-// })
+// Reset Timer
+input.onButtonPressed(Button.AB, () => {
+    control.reset()
+})
 
 // Reset
-input.onButtonPressed(Button.B, () => control.reset())
+input.onButtonPressed(Button.B, () => {
+    if (!locked) {
+        selectedTimer = (selectedTimer + 1) % 4
+        showTimerName()
+    }
+})
 
 // Start
 input.onButtonPressed(Button.A, () => {
-    let delay = timers[selectedTimer].time * 1000 / 5
-    for (let i = 5; i >=0 ; i--) {
-        showCounterPhase[i]()
-        basic.pause(delay)
+    if (!locked) {
+        locked = true
+        let delay = timers[selectedTimer].time * 1000 / 5
+        for (let i = 5; i >=0 ; i--) {
+            showCounterPhase[i]()
+            basic.pause(delay)
+        }
+        locked = false
     }
 })
 
